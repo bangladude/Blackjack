@@ -16,7 +16,7 @@ void Deck::populateDeck(int* deck) {
   for (int i = 0; i < size; i++) {
     for (int suit = 0; suit < 4; suit++) {
       for (int rank = 1; rank <= 13; rank++) {
-	deck[i * 52 + suit * 13 + rank] = suit * 13 + rank;
+	deck[i * 52 + suit * 13 + rank - 1] = suit * 13 + rank;
       }
     }
   }
