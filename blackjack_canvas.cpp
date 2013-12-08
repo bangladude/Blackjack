@@ -13,9 +13,6 @@
 BlackjackCanvas::BlackjackCanvas(QWidget* parent)
   : QWidget(parent)
 {
-
-  temp = new QLineEdit(this);
-
   QPalette Pal(palette());
   Pal.setColor(QPalette::Background, Qt::darkGreen);
   this->setAutoFillBackground(true);
@@ -47,6 +44,9 @@ BlackjackCanvas::BlackjackCanvas(QWidget* parent)
   grid->addWidget(p3, 1, 2);
   grid->addWidget(p4, 1, 3);
   grid->addWidget(p5, 1, 4);
+
+  QPainter p(this);
+  p.drawRect(0, 0, WIDTH-1, HEIGHT-1);
 
   reset();
 }
@@ -98,8 +98,6 @@ void BlackjackCanvas::hitPress() {
   for(int i = 0; i < pCounter; i++) {
     playerSum += value(player[i]);
   }
-  //  sprintf(buffer, "CARD VALUES: %i, %i", value(player[0]), value(player[1]));
-  //  temp->insert(QString(buffer));
   if(playerSum >= 17) {
     QMessageBox messageBox;
     messageBox.setWindowTitle("Are you sure?");
@@ -134,16 +132,13 @@ void BlackjackCanvas::hitPress() {
     QMessageBox messageBox;
     messageBox.setWindowTitle("Bust");
     messageBox.setText("Sorry, you went over 21");
-    messageBox.setStandardButtons(QMessageBox::Ok);//QMessageBox::Yes | QMessageBox::No);
+    messageBox.setStandardButtons(QMessageBox::Ok);
     messageBox.setDefaultButton(QMessageBox::Ok);
     if(messageBox.exec() == QMessageBox::Ok) {
       return;
     }
   }
 }
-
-// void BlackjackCanvas::doublePress() {
-// }
 
 void mySleep(unsigned int time) {
   clock_t goal = time + clock();
@@ -206,7 +201,7 @@ void BlackjackCanvas::standPress() {
     QMessageBox messageBox;
     messageBox.setWindowTitle("Hand Over");
     messageBox.setText("Sorry, you lose");
-    messageBox.setStandardButtons(QMessageBox::Ok);//QMessageBox::Yes | QMessageBox::No);
+    messageBox.setStandardButtons(QMessageBox::Ok);
     messageBox.setDefaultButton(QMessageBox::Ok);
     if(messageBox.exec() == QMessageBox::Ok) {
       return;
@@ -215,7 +210,7 @@ void BlackjackCanvas::standPress() {
     QMessageBox messageBox;
     messageBox.setWindowTitle("Hand Over");
     messageBox.setText("Push");
-    messageBox.setStandardButtons(QMessageBox::Ok);//QMessageBox::Yes | QMessageBox::No);
+    messageBox.setStandardButtons(QMessageBox::Ok);
     messageBox.setDefaultButton(QMessageBox::Ok);
     if(messageBox.exec() == QMessageBox::Ok) {
       return;
@@ -223,10 +218,6 @@ void BlackjackCanvas::standPress() {
   }
   state = AFTER_HAND;
 }
-
-// void BlackjackCanvas::foldPress() {
-//   dealPress();
-// }
 
 void BlackjackCanvas::dealPress() {
   if(deck->remainingCards() < 10) {
@@ -266,12 +257,4 @@ void BlackjackCanvas::reset()
   deck->setDeckSize(NUM_DECKS);
   newHand();
   update();
-}
-
-void BlackjackCanvas::paintEvent(QPaintEvent*)
-{
-  QPainter p(this);
-  
-  // draw frame
-  p.drawRect(0, 0, WIDTH-1, HEIGHT-1);
 }

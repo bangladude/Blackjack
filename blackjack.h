@@ -9,12 +9,8 @@ class Blackjack : public QWidget
 {
   Q_OBJECT
 
-    public:
+ public:
   Blackjack();
-  //  QPushButton* quitButton;
-
-  private slots:
-    //  void changeButtonText(QString str);
 
  private:
   BlackjackCanvas* canvas;
@@ -24,7 +20,6 @@ class Blackjack : public QWidget
   QPushButton* standButton;
   QPushButton* foldButton;
   QPushButton* dealButton;
-  //  QPushButton* quitButton;
 };
 
 #endif

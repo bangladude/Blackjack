@@ -16,11 +16,11 @@ void Deck::populateDeck(int* deck) {
   for (int i = 0; i < size; i++) {
     for (int suit = 0; suit < 4; suit++) {
       for (int rank = 1; rank <= 13; rank++) {
-	deck[i * 52 + suit * 13 + rank - 1] = suit * 13 + rank;
+  	deck[i * 52 + suit * 13 + rank - 1] = suit * 13 + rank;
       }
     }
   }
-  std::random_shuffle(deck, deck + size);
+  std::random_shuffle(deck, deck + size * 52);
 }
 
 void Deck::setDeckSize(int n) {
@@ -28,17 +28,21 @@ void Deck::setDeckSize(int n) {
     delete deck;
     deck = 0;
   }
-  size = n * 52;
-  deck = new int[size];
+  size = n;
+  deck = new int[size * 52];
   populateDeck(deck);
   counter = 0;
 }
 
 int Deck::drawCard() {
-  if (counter == size) {
+  if (counter == size * 52) {
     return 0;
   } else {
     counter++;
     return deck[counter - 1];
   }
+}
+
+int Deck::remainingCards() {
+  return size * 52 - counter;
 }

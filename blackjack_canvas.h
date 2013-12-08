@@ -18,16 +18,12 @@ class BlackjackCanvas : public QWidget
   public slots:
   void startPress();
   void hitPress();
-  //  void doublePress();
   void standPress();
-  //  void foldPress();
   void dealPress();
   void newHand();
   int computerHit();
-  //  void quitPress();
 
  protected:
-  void paintEvent(QPaintEvent* event);
   QLineEdit* temp;
   QGridLayout* grid;
   QLabel* p1;
@@ -45,11 +41,6 @@ class BlackjackCanvas : public QWidget
   int computer[5];
   int cCounter;
   char buffer[100];
-  /* void keyPressEvent(QKeyEvent* event); */
-  /* void keyReleaseEvent(QKeyEvent* event); */
-
-  private slots:
-    //  void timerTicked();
 
  private:
   Deck* deck;
@@ -57,8 +48,6 @@ class BlackjackCanvas : public QWidget
   void reset();
 
   enum State { BEFORE_PLAY, PLAYING, AFTER_HAND } state;
-
-  //   QTimer* timer;
 
   static const int WIDTH = 700;
   static const int HEIGHT = 300;

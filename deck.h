@@ -7,6 +7,7 @@ class Deck {
   Deck();
   void setDeckSize(int n);
   int drawCard();
+  int remainingCards();
 
  private:
   void populateDeck(int* deck);

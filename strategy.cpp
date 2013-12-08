@@ -199,14 +199,14 @@ void Strategy::printStrategy(int s) {
 	}
 }
 
-int main(int argc, char **argv) {
-	for (int i = 0; i < 100; i++) {
-		int c1 = rand() % 13 + 1;
-		int c2 = rand() % 13 + 1;
-		int d = rand() % 13 + 1;
-		std::cout << "Strategy on (" << c1 << "+" << c2 << ")=(" << c1 + c2 << 
-				") when dealer is showing (" << d << ") is: ";
-		Strategy::printStrategy(Strategy::getPlay(c1, c2, d));
-		std::cout << std::endl;
-	}
-}
+// int main(int argc, char **argv) {
+// 	for (int i = 0; i < 100; i++) {
+// 		int c1 = rand() % 13 + 1;
+// 		int c2 = rand() % 13 + 1;
+// 		int d = rand() % 13 + 1;
+// 		std::cout << "Strategy on (" << c1 << "+" << c2 << ")=(" << c1 + c2 << 
+// 				") when dealer is showing (" << d << ") is: ";
+// 		Strategy::printStrategy(Strategy::getPlay(c1, c2, d));
+// 		std::cout << std::endl;
+// 	}
+// }
