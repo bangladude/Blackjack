@@ -309,15 +309,14 @@ int BlackjackCanvas::getComputerPlay() {
   }
 
   if (computerSum >= 17) { // Standard dealer check
-    if (count < -6) { // Only hit if many high cards seen
-      return HIT;
+    if (count < -3 * NUM_DECKS) { // <3/5 high cards/deck seen
     } else {
       return STAND;
     }
   }
 
   if (computerSum >= 12) {
-    if (count > 12) {
+    if (count > 3 * NUM_DECKS) { // <3/5 low cards/deck seen
       return STAND;
     } else {
       return HIT;
