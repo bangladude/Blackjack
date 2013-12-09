@@ -41,6 +41,7 @@ class BlackjackCanvas : public QWidget
   QLabel* c4;
   QLabel* c5;
   QLabel* cc;
+
   int player[5];
   int pCounter;
   int computer[5];

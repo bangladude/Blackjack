@@ -35,6 +35,7 @@ BlackjackCanvas::BlackjackCanvas(QWidget* parent)
   c4 = new QLabel(this);
   c5 = new QLabel(this);
   cc = new QLabel(this);
+
   grid->addWidget(c1, 0, 0);
   grid->addWidget(c2, 0, 1);
   grid->addWidget(c3, 0, 2);
@@ -46,6 +47,7 @@ BlackjackCanvas::BlackjackCanvas(QWidget* parent)
   grid->addWidget(p4, 1, 3);
   grid->addWidget(p5, 1, 4);
   grid->addWidget(cc, 2, 0); // Where on the screen is 2,0?
+
 
   QPainter p(this);
   p.drawRect(0, 0, WIDTH-1, HEIGHT-1);
@@ -113,6 +115,7 @@ void BlackjackCanvas::hitPress() {
   }
   int card = deck->drawCard();
   updateCount(card);
+
   player[pCounter] = card;
   switch(pCounter) {
   case 2:
@@ -152,6 +155,7 @@ void mySleep(unsigned int time) {
 int BlackjackCanvas::computerHit() {
   int card = deck->drawCard();
   updateCount(card);
+
   computer[cCounter] = card;
   switch(cCounter) {
   case 2:
@@ -182,11 +186,6 @@ void BlackjackCanvas::standPress() {
   int computerSum = 0;
   computerSum += value(computer[1]) + value(computer[0]);
 
-  /*
-  while (computerSum < 17 && cCounter <= 5) {
-    computerSum += computerHit();
-  }
-  */
   while (getComputerPlay() == HIT) {
     computerSum += computerHit();
   }
@@ -243,6 +242,7 @@ void BlackjackCanvas::dealPress() {
     newHand();
     int card = deck->drawCard();
     updateCount(card);
+
     sprintf(buffer, "images/%i.gif", card);
     c1->setPixmap(QPixmap(buffer));
     computer[0] = card;
@@ -253,11 +253,13 @@ void BlackjackCanvas::dealPress() {
     computer[1] = card;
     card = deck->drawCard();
     updateCount(card);
+
     sprintf(buffer, "images/%i.gif", card);
     p1->setPixmap(QPixmap(buffer));
     player[0] = card;
     card = deck->drawCard();
     updateCount(card);
+
     sprintf(buffer, "images/%i.gif", card);
     p2->setPixmap(QPixmap(buffer));
     player[1] = card;

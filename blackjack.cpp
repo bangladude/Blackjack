@@ -33,7 +33,6 @@ Blackjack::Blackjack()
   connect(dealButton, SIGNAL(clicked()), canvas, SLOT(dealPress()));
   connect(countButton, SIGNAL(clicked()), canvas, SLOT(countPress()));
 
-
   connect(canvas, SIGNAL(needsButtonChange(QString)), this, 
 	  SLOT(changeButtonText(QString)));
 }
