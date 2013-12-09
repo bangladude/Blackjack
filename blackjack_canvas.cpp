@@ -179,7 +179,8 @@ int BlackjackCanvas::computerHit() {
 
 
 void BlackjackCanvas::standPress() {
-  sleep(1);
+
+  mySleep(1);
   sprintf(buffer, "images/%i.gif", computer[1]);
 
   c2->setPixmap(QPixmap(buffer));
@@ -196,7 +197,6 @@ void BlackjackCanvas::standPress() {
   }
 
   sprintf(buffer, "p:%i, c:%i", pSum, computerSum);
-  temp->insert(QString(buffer));
   if(computerSum > 21) {
     QMessageBox messageBox;
     messageBox.setWindowTitle("Hand Over");
