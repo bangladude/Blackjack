@@ -136,6 +136,9 @@ void BlackjackCanvas::hitPress() {
   }
   playerSum += value(card);
   if(playerSum > 21) {
+    sprintf(buffer, "images/%i.gif", computer[1]);
+    updateCount(computer[1]);
+    c2->setPixmap(QPixmap(buffer));
     QMessageBox messageBox;
     messageBox.setWindowTitle("Bust");
     messageBox.setText("Sorry, you went over 21");
@@ -182,6 +185,7 @@ void BlackjackCanvas::standPress() {
 
   mySleep(1);
   sprintf(buffer, "images/%i.gif", computer[1]);
+  updateCount(computer[1]);
 
   c2->setPixmap(QPixmap(buffer));
   int computerSum = 0;
@@ -247,7 +251,7 @@ void BlackjackCanvas::dealPress() {
     c1->setPixmap(QPixmap(buffer));
     computer[0] = card;
     card = deck->drawCard();
-    updateCount(card);
+    //    updateCount(card);
 
     c2->setPixmap(QPixmap("images/blank_black.gif"));
     computer[1] = card;
@@ -287,9 +291,9 @@ void BlackjackCanvas::countPress()
 }
 
 void BlackjackCanvas::updateCount(int card) {
-  if (card >= 2 && card <= 6) {
+  if (value(card) >= 2 && value(card) <= 6) {
     count += 1;
-  } else if (card >= 7 && card <= 9) {
+  } else if (value(card) >= 7 && value(card) <= 9) {
     count += 0;
   } else {
     count += -1;
